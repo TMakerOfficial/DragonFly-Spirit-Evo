@@ -1,12 +1,12 @@
 {
   "name": "DragonFlySpirit C3",
-  "version": "1.0.0",
+  "version": "1",
   "builds": [
     {
       "chipFamily": "ESP32-C3",
       "parts": [
         {
-          "path": "airplane_v1.0.0.bin",
+          "path": "DragonFly_Spirit_Evo_V1.bin",
           "offset": 0
         }
       ]
