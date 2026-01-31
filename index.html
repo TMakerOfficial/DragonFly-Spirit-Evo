@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
   <style>
+    /* --- 1. การตั้งค่าพื้นฐาน --- */
     * {
       margin: 0;
       padding: 0;
@@ -19,7 +20,7 @@
       width: 100%;
       overflow: hidden;
       font-family: 'Orbitron', monospace;
-      background: #0f0c29;
+      background: #0b0f19; /* พื้นหลังมืดลงเพื่อให้สีส้มเด่น */
       color: #e0e0ff;
     }
 
@@ -31,65 +32,112 @@
       text-align: center;
       position: relative;
       z-index: 1;
+      padding: 1rem;
     }
 
+    /* --- 2. ตัวอักษรและหัวข้อ (ธีมสีส้ม) --- */
     h1 {
-      font-size: 3rem;
-      color: #ff00de;
-      text-shadow: 0 0 3px #ff00de, 0 0 10px #ff00de;
+      font-size: clamp(2rem, 5vw, 3rem); /* ปรับขนาดอัตโนมัติตามจอ */
+      color: #ffaa00; /* สีส้ม */
+      text-shadow: 0 0 3px #ffaa00, 0 0 10px #ffaa00;
       margin-bottom: 1rem;
+      line-height: 1.2;
     }
 
     h2 {
-      font-size: 1.5rem;
-      color: #00fff7;
-      text-shadow: 0 0 5px #00fff7;
-      margin-bottom: 3rem;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      color: #00ccff; /* สีฟ้า */
+      text-shadow: 0 0 5px #00ccff;
+      margin-bottom: 2.5rem;
     }
 
+    /* --- 3. กล่องเลือกเวอร์ชั่น (Select Box) --- */
     select {
-      font-size: 1.2rem;
-      padding: 0.5rem 1rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      padding: 0.8rem 1.5rem;
       margin-bottom: 2rem;
       border-radius: 8px;
+      border: 2px solid #ffaa00; /* ขอบสีส้ม */
+      background-color: rgba(11, 15, 25, 0.8);
+      color: #ffaa00;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
+      transition: 0.3s;
     }
 
+    select:hover, select:focus {
+      box-shadow: 0 0 15px #ffaa00;
+      background-color: rgba(11, 15, 25, 1);
+    }
+
+    /* --- 4. ปุ่ม Install และ Download (ธีมไล่สี ส้ม-ฟ้า) --- */
     esp-web-install-button::part(button),
     .download-btn {
-      background: linear-gradient(90deg, #ff00de, #00fff7, #ff00de);
+      /* ไล่สี ส้ม -> ฟ้า -> ส้ม */
+      background: linear-gradient(90deg, #ffaa00, #00ccff, #ffaa00);
       background-size: 200% auto;
-      color: #0f0c29;
-      font-size: 1.3rem;
+      color: #0b0f19; /* ตัวหนังสือสีเข้ม */
+      font-size: 1.2rem;
       font-weight: bold;
       border: none;
       border-radius: 14px;
-      padding: 1rem 3rem;
+      padding: 1rem 2rem;
       cursor: pointer;
-      box-shadow: 0 0 15px #ff00de, 0 0 25px #00fff7 inset;
+      /* เงาสีส้มและฟ้า */
+      box-shadow: 0 0 15px #ffaa00, 0 0 25px #00ccff inset;
       transition: 0.4s ease-in-out;
       animation: glow-move 4s linear infinite;
       text-transform: uppercase;
-      filter: drop-shadow(0 0 5px #ff00de) drop-shadow(0 0 10px #00fff7);
+      text-decoration: none;
+      filter: drop-shadow(0 0 5px #ffaa00) drop-shadow(0 0 10px #00ccff);
       margin: 10px;
+      display: inline-block;
+      font-family: 'Orbitron', monospace;
     }
 
     esp-web-install-button::part(button):hover,
     .download-btn:hover {
       background-position: right center;
-      box-shadow: 0 0 30px #00fff7, 0 0 40px #00fff7 inset;
-      filter: drop-shadow(0 0 8px #00fff7) drop-shadow(0 0 15px #00fff7);
+      box-shadow: 0 0 30px #00ccff, 0 0 40px #00ccff inset;
+      filter: drop-shadow(0 0 8px #00ccff) drop-shadow(0 0 15px #00ccff);
+      transform: scale(1.02);
     }
 
+    /* --- 5. ปรับเฉพาะปุ่ม Download ให้เล็กลงและรองรับมือถือ --- */
+    .download-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      width: 100%;
+    }
+
+    .download-btn {
+      width: 100%;
+      max-width: 500px; /* ใช้ max-width เพื่อไม่ให้ล้นจอมือถือ */
+      font-size: 0.9rem !important; /* ลดขนาดตัวอักษรลง */
+      padding: 0.8rem 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* --- 6. Footer --- */
     footer {
       position: absolute;
       bottom: 1rem;
-      font-size: 1rem;
-      color: #00ccff;
-      text-shadow: 0 0 5px #00ccff, 0 0 15px #00ccff;
+      font-size: 0.9rem;
+      color: #ffaa00; /* สีส้ม */
+      text-shadow: 0 0 5px #ffaa00;
       user-select: none;
       font-family: 'Courier New', Courier, monospace;
+      width: 100%;
     }
 
+    /* --- 7. Animation & Particles --- */
     @keyframes glow-move {
       0% { background-position: 0% center; }
       100% { background-position: 200% center; }
@@ -108,18 +156,19 @@
 
     .particle {
       position: absolute;
-      width: 6px;
-      height: 6px;
-      background: rgba(0, 255, 255, 0.8);
-      box-shadow: 0 0 12px #00fff7, 0 0 20px #00fff7;
+      width: 5px;
+      height: 5px;
+      /* เปลี่ยนละอองเป็นสีส้ม เหมือนสะเก็ดไฟ */
+      background: rgba(255, 170, 0, 0.8);
+      box-shadow: 0 0 12px #ffaa00, 0 0 20px #ffaa00;
       border-radius: 50%;
       opacity: 0;
-      animation: floatUp 10s linear infinite;
+      animation: floatUp 8s linear infinite;
     }
 
     @keyframes floatUp {
       0% { transform: translateY(110vh); opacity: 0; }
-      10%,90% { opacity: 1; }
+      10%, 90% { opacity: 1; }
       100% { transform: translateY(-10vh); opacity: 0; }
     }
   </style>
@@ -127,15 +176,15 @@
 
 <body>
   <div class="particles"></div>
-
   <script>
-    for (let i = 0; i < 30; i++) {
+    const particleContainer = document.querySelector('.particles');
+    for (let i = 0; i < 35; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
       p.style.left = `${Math.random() * 100}%`;
       p.style.animationDelay = `${Math.random() * 10}s`;
-      p.style.animationDuration = `${6 + Math.random() * 6}s`;
-      document.querySelector('.particles').appendChild(p);
+      p.style.animationDuration = `${5 + Math.random() * 5}s`;
+      particleContainer.appendChild(p);
     }
   </script>
 
@@ -149,36 +198,19 @@
 
   <esp-web-install-button id="installBtn" manifest="Firmware/V1/Controller/manifest.json"></esp-web-install-button>
 
-  <!-- ปุ่มดาวน์โหลด -->
   <div class="download-section">
     <a href="DroneCodeExample.ino" class="download-btn" download>🛩️ Drone Code Example 🛩️</a>
     <a href="ControllerCodeExample.ino" class="download-btn" download>🎮 Controller Code Example 🎮</a>
   </div>
 
-  <style>
-    .download-section {
-      display: flex;
-      flex-direction: column; /* เรียงแนวตั้ง */
-      align-items: center;    /* จัดให้อยู่ตรงกลางแนวนอน */
-      gap: 1rem;              /* ระยะห่างระหว่างปุ่ม */
-      margin-top: 2rem;
-    }
-
-    .download-btn {
-      width: 450px;
-      text-align: center;
-      text-decoration: none;
-      text-transform: none;
-    }
-  </style>
-
   <footer>
-    Developed by T Maker
+    Developed by T Maker : Facebook | TikTok | Youtube
   </footer>
 
   <script>
     const select = document.getElementById('versionSelect');
     const installBtn = document.getElementById('installBtn');
+    
     select.addEventListener('change', () => {
       installBtn.setAttribute('manifest', select.value);
     });
