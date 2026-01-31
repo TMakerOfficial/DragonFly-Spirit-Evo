@@ -1,6 +1,6 @@
 {
-  "name": "DragonFlySpirit C3",
-  "version": "1",
+  "name": "DragonFly Spirit Evo",
+  "version": "V1",
   "builds": [
     {
       "chipFamily": "ESP32-C3",
